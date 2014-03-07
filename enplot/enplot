@@ -54,6 +54,8 @@ parser.add_argument("-Y", "--y-label",
                     help="label for use on Y axis", type=str)
 parser.add_argument("-Z", "--z-label",
                     help="label for use on Z axis", type=str)
+parser.add_argument("-g", "--grid", action='store_true', default=False,
+                    help="Whether to enable grid in plot")
 parser.add_argument("--width", dest="w", type=float, default=8.0,
                     help="Width of the figure in inch")
 parser.add_argument("--height", dest="h", type=float, default=6.0,
@@ -155,7 +157,7 @@ if not args.z and not args.matrix_form:
                     ydata = M[:, int(i)]
 
                 if args.style == 'line':
-                    axes.plot(xdata, ydata, color=next(colorcycler))
+                    axes.plot(xdata, ydata, color=next(colorcycler), linewidth=1.0)
                 elif args.style == 'scatter':
                     axes.scatter(xdata, ydata, color=next(colorcycler))
                 elif args.style == 'fill':
@@ -184,8 +186,9 @@ if not args.z and not args.matrix_form:
         axes.set_ylabel(args.y_label)
 
     if args.legends and len(args.legends) > 0:
-        axes.legend(args.legends.split(","))
+        axes.legend(args.legends.split(","), loc='best')
 
+    axes.grid(args.grid)
     axes.autoscale(tight=True)
 
 else:
@@ -283,9 +286,9 @@ else:
 #
 if args.output_file and len(args.output_file):
     if args.output_file:
-        fig.savefig(args.output_file, format=args.output_format)
+        fig.savefig(args.output_file, format=args.output_format, bbox_inches='tight')
     else:
-        fig.savefig(args.output_file)
+        fig.savefig(args.output_file, bbox_inches='tight')
 
 if not args.quiet:
     plt.show()
