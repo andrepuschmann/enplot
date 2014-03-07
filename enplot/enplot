@@ -75,7 +75,7 @@ parser.add_argument("-d", "--debug", help="activate debug printouts",
 parser.add_argument("-v", "--view",
                     help="view perspective (top or 3d)", type=str)
 parser.add_argument("--tex", dest="usetex", default=False, action="store_true",
-                    help="Whether to TeX for output")                    
+                    help="Whether to TeX for output")
 parser.add_argument("-V", "--version",
                     help="show version information", action='store_true')
 parser.add_argument("-c", "--colorbar",
@@ -118,13 +118,14 @@ import matplotlib
 from matplotlib import pyplot, cm, rcParams
 from mpl_toolkits.mplot3d import Axes3D
 
-params = {'font.family': 'serif',
-          'font.size': 16,
-          'axes.labelsize': 18,
-          'text.fontsize': 18,
-          'legend.fontsize': 18,
-          'xtick.labelsize': 18,
-          'ytick.labelsize': 18,
+params = {'font.family': 'sans-serif',
+          'font.sans-serif': ['Helvetica','Avant Garde', 'Computer Modern Sans serif', 'Tex Gyre Heros', 'Bitstream Vera Sans', 'Verdana','Tahoma'],
+          'font.size': 9,
+          'axes.labelsize': 9,
+          'text.fontsize': 9,
+          'legend.fontsize': 9,
+          'xtick.labelsize': 9,
+          'ytick.labelsize': 9,
           'text.usetex': args.usetex}
 
 matplotlib.rcParams.update(params)
