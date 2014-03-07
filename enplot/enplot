@@ -54,6 +54,10 @@ parser.add_argument("-Y", "--y-label",
                     help="label for use on Y axis", type=str)
 parser.add_argument("-Z", "--z-label",
                     help="label for use on Z axis", type=str)
+parser.add_argument("--width", dest="w", type=float, default=8.0,
+                    help="Width of the figure in inch")
+parser.add_argument("--height", dest="h", type=float, default=6.0,
+                    help="Height of the figure in inch")                  
 parser.add_argument("-l", "--legends",
                     help="comma-separated list of legends", type=str)
 parser.add_argument("-S", "--sort",
@@ -129,7 +133,7 @@ if not args.z and not args.matrix_form:
     #
     # 2d plot
     #
-    fig, axes = plt.subplots(1, 1, figsize=(8, 6))
+    fig, axes = plt.subplots(1, 1, figsize=(args.w, args.h))
 
     for data_file in args.datafile:
 
@@ -188,7 +192,7 @@ else:
     #
     # 3D plots
     #
-    fig = plt.figure(figsize=(8, 6))
+    fig = plt.figure(figsize=(args.w, args.h))
 
     if args.z:
         nax = len(zcols)
